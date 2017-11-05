@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MapCreator : MonoBehaviour {
+public class OldMapCreator : MonoBehaviour {
 
-    public static MapCreator instance;
+    public static OldMapCreator instance;
 
 	public enum MapSize
 	{
@@ -32,7 +32,7 @@ public class MapCreator : MonoBehaviour {
 	public GameObject start;
 	public GameObject finish;
 
-    public ImageTargetBehaviour planeTarget;
+    //public ImageTargetBehaviour planeTarget;
     private List<Animator> availablePaths;
 
     private float increaseRatio; 
@@ -75,11 +75,11 @@ public class MapCreator : MonoBehaviour {
         //startingPointY = (planeTarget[1].gameObject.transform.position.y + planeTarget[1].GetSize().y / 2) - increaseRatio / 2;
         //finalPointY = (planeTarget[1].gameObject.transform.position.y - planeTarget[1].GetSize().y / 2) + increaseRatio / 2;
 
-        startingPointX = (planeTarget.gameObject.transform.position.x - planeTarget.GetSize().x / 2) + increaseRatio / 2;
-        finalPointX = (planeTarget.gameObject.transform.position.x + planeTarget.GetSize().x / 2) - increaseRatio / 2;
+        //startingPointX = (planeTarget.gameObject.transform.position.x - planeTarget.GetSize().x / 2) + increaseRatio / 2;
+        //finalPointX = (planeTarget.gameObject.transform.position.x + planeTarget.GetSize().x / 2) - increaseRatio / 2;
 
-        startingPointY = (planeTarget.gameObject.transform.position.y + planeTarget.GetSize().y / 2) - increaseRatio / 2;
-        finalPointY = (planeTarget.gameObject.transform.position.y - planeTarget.GetSize().y / 2) + increaseRatio / 2;
+        //startingPointY = (planeTarget.gameObject.transform.position.y + planeTarget.GetSize().y / 2) - increaseRatio / 2;
+        //finalPointY = (planeTarget.gameObject.transform.position.y - planeTarget.GetSize().y / 2) + increaseRatio / 2;
 
         square.transform.localScale = new Vector3(increaseRatio, increaseRatio, increaseRatio);
         start.transform.localScale = finish.transform.localScale = square.transform.localScale;
@@ -92,8 +92,8 @@ public class MapCreator : MonoBehaviour {
         Debug.Log("startingPointY = " + startingPointY);
         Debug.Log("finalPointY = " + finalPointY);
 
-        int numberOfColumns = (int)(Mathf.Abs(startingPointX) + Mathf.Abs(finalPointX)) / 2;
-        int numberOfLines = (int)(Mathf.Abs(startingPointY) + Mathf.Abs(finalPointY)) / 2;
+        //int numberOfColumns = (int)(Mathf.Abs(startingPointX) + Mathf.Abs(finalPointX)) / 2;
+        //int numberOfLines = (int)(Mathf.Abs(startingPointY) + Mathf.Abs(finalPointY)) / 2;
 
         int index = 0;
 
@@ -204,8 +204,8 @@ public class MapCreator : MonoBehaviour {
                     break;
             }
 
-            Vector2 start = MapCreator.instance.GetMatrixCoordFromWorldCoords(startingPointX, startingPointY);
-            Vector2 end = MapCreator.instance.GetMatrixCoordFromWorldCoords(finalPointX, finalPointY);
+            Vector2 start = OldMapCreator.instance.GetMatrixCoordFromWorldCoords(startingPointX, startingPointY);
+            Vector2 end = OldMapCreator.instance.GetMatrixCoordFromWorldCoords(finalPointX, finalPointY);
 
             Astar.instance.CreatePath((int)start.x, (int)start.y, (int)end.x, (int)end.y);
         }
@@ -249,7 +249,7 @@ public class MapCreator : MonoBehaviour {
         {
             for(int j=0;j<Astar.instance.numberOfColumns;j++)
             {
-                if(Levels.levels[givenLevel][i,j] == 1)
+                //if(Levels.levels[givenLevel][i,j] == 1)
                 {
                     Astar.instance.RegisterObstacle(i, j);
 
@@ -318,20 +318,20 @@ public class MapCreator : MonoBehaviour {
         {
             if (GUI.Button(new Rect(Screen.width - 200, 0, 200, 100), "Pause & Place a tower"))
             {
-                availablePaths.ForEach((Animator anim) => { anim.Play("available"); anim.collider2D.enabled = true; });
+                //availablePaths.ForEach((Animator anim) => { anim.Play("available"); anim.collider2D.enabled = true; });
                 canPlace = !canPlace;
 
-                TimeManager.gameIsPaused = true;
+                //TimeManager.gameIsPaused = true;
             }
         }
         else
         {
             if (GUI.Button(new Rect(Screen.width - 200, 0, 200, 100), "Resume game"))
             {
-                availablePaths.ForEach((Animator anim) => { anim.Play("idle"); anim.collider2D.enabled = false; });
+                //availablePaths.ForEach((Animator anim) => { anim.Play("idle"); anim.collider2D.enabled = false; });
                 canPlace = !canPlace;
 
-                TimeManager.gameIsPaused = false;
+                //TimeManager.gameIsPaused = false;
             }
         }
 
@@ -339,8 +339,8 @@ public class MapCreator : MonoBehaviour {
         {
             if (GUI.Button(new Rect(Screen.width - 200, 120, 200, 100), "Place on selected spot"))
             {
-                GameObject g = (GameObject)Instantiate(towerObject, selectedSpotForTower.transform.position, Quaternion.identity);
-                g.GetComponent<TowerCreator>().CreateTower();
+                //GameObject g = (GameObject)Instantiate(towerObject, selectedSpotForTower.transform.position, Quaternion.identity);
+                //g.GetComponent<TowerCreator>().CreateTower();
 
                 GameObject pathSpot = availablePaths[availablePaths.FindIndex(x => x.transform.position == selectedSpotForTower.transform.position)].gameObject;
 

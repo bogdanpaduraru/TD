@@ -24,7 +24,7 @@ public class UnitMovement : MonoBehaviour {
 	
 	void Update()
 	{
-        if (!TimeManager.gameIsPaused)
+        //if (!TimeManager.gameIsPaused)
         {
             if (canMove)
             {

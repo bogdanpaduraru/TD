@@ -20,7 +20,7 @@ public class Astar : MonoBehaviour {
 
 	private int[,] matrix;
 
-	private int squareSize;
+	//private int squareSize;
 
     public int numberOfColumns;
     public int numberOfLines;
@@ -60,7 +60,7 @@ public class Astar : MonoBehaviour {
         numberOfLines = ((int)(Mathf.Abs(_minY) + Mathf.Abs(_maxY)) / _squareSize) + 1;
 
 		matrix = new int[numberOfLines, numberOfColumns];
-		squareSize = _squareSize;
+		//squareSize = _squareSize;
 	}
 
 	public void RegisterObstacle(int lineIndex, int columnIndex)
@@ -149,7 +149,7 @@ public class Astar : MonoBehaviour {
 
 	private double H(AstarNode start, AstarNode end)
 	{
-		double D = 1, D2 = Mathf.Sqrt (2);
+        double D = 1;//, D2 = Mathf.Sqrt (2);
 		int dx, dy;
 
 		dx = Mathf.Abs (start.x - end.x);
@@ -160,7 +160,7 @@ public class Astar : MonoBehaviour {
 
 	private double MovementCost(AstarNode start, AstarNode end)
 	{
-		double D = 1, D2 = Mathf.Sqrt (2);
+        double D = 1;//, D2 = Mathf.Sqrt (2);
 		int dx, dy;
 		
 		dx = Mathf.Abs (start.x - end.x);
@@ -357,7 +357,7 @@ public class Astar : MonoBehaviour {
 
         finalResult.Reverse();
 
-        path = MapCreator.instance.GetWoorldCoordsFromMatrixCoords(finalResult);
-        MapCreator.instance.RemoveRoadSpots(path);
+        //path = MapCreator.instance.GetWoorldCoordsFromMatrixCoords(finalResult);
+        //MapCreator.instance.RemoveRoadSpots(path);
     }
 }
